@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"  # пробрасываем порт 5000 для доступа к приложению
+    volumes:
+      - ./Backend:/pyscrap/Backend  # монтируем папку Backend в контейнер
+    environment:
+      - FLASK_ENV=development  # устанавливаем среду разработки для Flask
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
